@@ -1,7 +1,12 @@
 jQuery(document).ready(function($){
   var mediaUploader;
-  $('#upload_image_button').click(function(e) {
+  
+  $('.upload_image_button').click(function(e) {
+    var url,img;
     e.preventDefault();
+    console.log('clicked now');
+    url = $(this).closest('.input_wrap').find('.option_url');
+    img = $(this).closest('.input_wrap').find('.uploaded_img');
       if (mediaUploader) {
       mediaUploader.open();
       return;
@@ -13,9 +18,9 @@ jQuery(document).ready(function($){
     }, multiple: false });
     mediaUploader.on('select', function() {
       var attachment = mediaUploader.state().get('selection').first().toJSON();
-      console.log(attachment.url);
-      $('#featured_img').val(attachment.url);
-      $('#uploaded_img').attr('src', attachment.url);
+       console.log(attachment.url);
+      $(url).val(attachment.url);
+      $(img).attr('src', attachment.url);
     });
     mediaUploader.open();
   });

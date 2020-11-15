@@ -1,0 +1,22 @@
+.options-page-global-fields h2 {
+	font-weight: bold;
+}
+.options-page-global-fields .input_wrap {
+	padding-bottom: 1rem;
+}
+.options-page-global-fields .input_wrap p {
+	margin: 0;
+	padding-bottom: .2rem;
+}
+.options-page-global-fields .img_wrap {
+	display: block;
+}
+.options-page-global-fields .img_wrap img {
+	margin: 1.5rem 1rem 1rem;
+}
+.options-page-global-fields .input_wrap .option_url {
+	margin-right: .5rem;
+}
+.options-page-global-fields .input_wrap.submit_wrap {
+	padding-top: 1rem;
+}

@@ -1,0 +1,10 @@
+.options-page-global-fields h2 {
+	font-weight: bold;
+}
+.options-page-global-fields .input_wrap p {
+	padding-left: .5rem;
+}
+.options-page-global-fields .img_wrap {
+	display: block;
+	padding: 1rem 1rem 2rem;
+}
