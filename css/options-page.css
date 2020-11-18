@@ -20,3 +20,6 @@
 .options-page-global-fields .input_wrap.submit_wrap {
 	padding-top: 1rem;
 }
+.options-page-global-fields .input_wrap.submit_wrap input {
+	cursor: pointer;
+}

@@ -13,7 +13,17 @@
 
 add_action('admin_menu', 'add_gcf_interface');
 function add_gcf_interface() {
-    $my_page = add_options_page('Global Custom Fields', 'Global Custom Fields', 'manage_options', 'functions', 'editglobalcustomfields');
+   $my_page = add_options_page('Global Custom Fields', 'Global Custom Fields', 'manage_options', 'functions', 'editglobalcustomfields');
+
+   add_action( 'admin_init', 'register_option_settings' );
+}
+
+function register_option_settings() {
+	//register our settings
+	register_setting( 'option-settings-group', 'header_text_1' );
+	register_setting( 'option-settings-group', 'header_image_1' );
+	register_setting( 'option-settings-group', 'sidebar_text_1' );
+	register_setting( 'option-settings-group', 'sidebar_image_1' );
 }
 
 function editglobalcustomfields() {
