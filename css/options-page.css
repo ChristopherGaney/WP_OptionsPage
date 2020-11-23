@@ -1,6 +1,21 @@
 .options-page-global-fields h2 {
 	font-weight: bold;
 }
+.options-page-global-fields .add_new_option_wrap {
+	min-height: 3rem;
+	padding: .5rem;
+	background: #bdb9b9;
+	margin-bottom: 2rem;
+}
+.options-page-global-fields .add_new_option_wrap button {
+	font-size: .65rem;
+	line-height: .5rem;
+	padding: 0;
+	cursor: pointer;
+}
+.options-page-global-fields .add_new_option_wrap .new_option_specs {
+	display: none;
+}
 .options-page-global-fields .input_wrap {
 	padding-bottom: 1rem;
 }
@@ -22,4 +37,8 @@
 }
 .options-page-global-fields .input_wrap.submit_wrap input {
 	cursor: pointer;
+}
+.options-page-global-fields .radio_wrap .input_wrap {
+	display: inline-block;
+	padding: 0 .5rem;
 }
