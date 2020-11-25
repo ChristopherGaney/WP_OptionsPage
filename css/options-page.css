@@ -4,7 +4,7 @@
 .options-page-global-fields .add_new_option_wrap {
 	min-height: 3rem;
 	padding: .5rem;
-	background: #bdb9b9;
+	background: #eaeaea;
 	margin-bottom: 2rem;
 }
 .options-page-global-fields .add_new_option_wrap button {
@@ -12,9 +12,40 @@
 	line-height: .5rem;
 	padding: 0;
 	cursor: pointer;
+	margin-bottom: 1rem;
+}
+.options-page-global-fields .add_new_option_wrap .radio_wrap {
+	background: #fff;
+	padding: .2rem;
+	border: 1px solid #7e8993;
+	border-radius: .3rem;
 }
 .options-page-global-fields .add_new_option_wrap .new_option_specs {
 	display: none;
+}
+.options-page-global-fields .add_new_option_wrap .new_option_specs .input_wrap {
+	display: inline-block;
+	vertical-align: top;
+}
+.options-page-global-fields .add_new_option_wrap .new_option_specs .input_wrap.radio p {
+	display: inline-block;
+	padding-right: .8rem;
+}
+.options-page-global-fields .add_new_option_wrap .new_option_specs .input_wrap.radio {
+	padding: 0;
+	text-align: center;
+}
+.options-page-global-fields .add_new_option_wrap .new_option_specs .input_wrap.radio input {
+	/*margin: 0 auto;*/
+}
+.options-page-global-fields .add_new_option_wrap .new_option_specs .input_wrap:first-child {
+	margin-right: 1.5rem;
+}
+.options-page-global-fields .add_new_option_wrap .new_option_specs .submit_wrap {
+	display: block;
+}
+.options-page-global-fields .add_new_option_wrap .new_option_specs.showing {
+	display: block;
 }
 .options-page-global-fields .input_wrap {
 	padding-bottom: 1rem;

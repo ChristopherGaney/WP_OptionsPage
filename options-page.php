@@ -73,19 +73,21 @@ function editglobalcustomfields() {
               <p><strong>Field Name</strong></p>
               <input type="text" name="field_name" size="45" form="add_option" value="" placeholder="Field Name" />
             </div>
-            <p><strong>Field Type</strong></p>
-            <div class="radio_wrap">
-              <div class="input_wrap">
-                <p>Type Text</p>
-                <input type="radio" id="type_text" name="field_type" form="add_option" value="text"/>
-              </div>
-              <div class="input_wrap">
-                <p>Type Image</p>
-                <input type="radio" id="type_image" name="field_type" form="add_option" value="image"/>
+            <div class="input_wrap">
+              <p><strong>Field Type</strong></p>
+              <div class="radio_wrap">
+                <div class="input_wrap radio">
+                  <p>Type Text</p>
+                  <input type="radio" id="type_text" name="field_type" form="add_option" value="text"/>
+                </div>
+                <div class="input_wrap radio">
+                  <p>Type Image</p>
+                  <input type="radio" id="type_image" name="field_type" form="add_option" value="image"/>
+                </div>
               </div>
             </div>
             <div class="input_wrap submit_wrap">
-                <input type="submit" name="Submit" form="add_option" value="Add Option" />
+                <input type="submit" name="Submit" id="add_new_option" form="add_option" value="Add Option" />
                 <input type="hidden" name="action" form="add_option" value="update" />
                 <input type="hidden" name="page_options" form="add_option" value="field_name, field_type" />
             </div>
