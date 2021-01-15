@@ -32,11 +32,7 @@ function editglobalcustomfields() {
       <h2>Global Custom Fields</h2>
       <form id="option_fields" method="post" action="options.php" name="options_inputs">
         <?php wp_nonce_field('update-options') ?>
-      </form>
-      <form id="add_option" method="post" action="options.php" name="option_addition">
-          <?php wp_nonce_field('update-options') ?>
-          
-      </form>
+      
         <div class="input_wrap">
           <p><strong>Header Text 1</strong></p>
           <input type="text" name="header_text_1" size="45" form="option_fields" value="<?php echo get_option('header_text_1'); ?>" />
@@ -65,41 +61,53 @@ function editglobalcustomfields() {
             <img src="<?php echo $sidebar_image_1; ?>" class="uploaded_img">
           </div>
         </div>
-        <!-- Place to add new option -->
-        <div class="add_new_option_wrap">
-          <button id="add_new">ADD NEW</button>
-          <div class="new_option_specs">
-            <div class="input_wrap">
-              <p><strong>Field Name</strong></p>
-              <input type="text" name="field_name" size="45" form="add_option" value="" placeholder="Field Name" />
-            </div>
-            <div class="input_wrap">
-              <p><strong>Field Type</strong></p>
-              <div class="radio_wrap">
-                <div class="input_wrap radio">
-                  <p>Type Text</p>
-                  <input type="radio" id="type_text" name="field_type" form="add_option" value="text"/>
-                </div>
-                <div class="input_wrap radio">
-                  <p>Type Image</p>
-                  <input type="radio" id="type_image" name="field_type" form="add_option" value="image"/>
-                </div>
-              </div>
-            </div>
-            <div class="input_wrap submit_wrap">
-                <input type="submit" name="Submit" id="add_new_option" form="add_option" value="Add Option" />
-                <input type="hidden" name="action" form="add_option" value="update" />
-                <input type="hidden" name="page_options" form="add_option" value="field_name, field_type" />
-            </div>
-          </div>
-        </div>
-        <!-- End Place to add new option -->
+        
         <div class="input_wrap submit_wrap">
+          <!-- We will hide this and trigger it with another button below -->
           <input type="submit" name="Submit" form="option_fields" value="Update Options" />
 
           <input type="hidden" name="action" value="update" />
           <input type="hidden" name="page_options" value="header_text_1,header_image_1,sidebar_text_1,sidebar_image_1" />
         </div>
+      </form>
+
+      <!-- Place to add new option -->
+
+        
+        
+
+          <div class="add_new_option_wrap">
+            <button id="add_new">ADD NEW</button>
+            <div class="new_option_specs">
+              <form id="add_option" method="post" action="options.php" name="option_addition">
+                <?php wp_nonce_field('update-options') ?>
+                <div class="input_wrap">
+                  <p><strong>Field Name</strong></p>
+                  <input type="text" name="field_name" size="45" form="add_option" value="" placeholder="Field Name" />
+                </div>
+                <div class="input_wrap">
+                  <p><strong>Field Type</strong></p>
+                  <div class="radio_wrap">
+                    <div class="input_wrap radio">
+                      <p>Type Text</p>
+                      <input type="radio" id="type_text" name="field_type" form="add_option" value="text"/>
+                    </div>
+                    <div class="input_wrap radio">
+                      <p>Type Image</p>
+                      <input type="radio" id="type_image" name="field_type" form="add_option" value="image"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="input_wrap submit_wrap">
+                    <input type="submit" name="Submit" id="add_new_option" form="add_option" value="Add Option" />
+                    <input type="hidden" name="action" form="add_option" value="update" />
+                    <input type="hidden" name="page_options" form="add_option" value="field_name, field_type" />
+                </div>
+              </form>
+            </div>
+          </div>
+        
+        <!-- End Place to add new option -->
     </div>
     <?php
 }
