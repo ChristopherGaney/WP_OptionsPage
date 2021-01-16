@@ -1,3 +1,8 @@
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
 .options-page-global-fields h2 {
 	font-weight: bold;
 }
@@ -7,18 +12,26 @@
 	background: #eaeaea;
 	margin-bottom: 2rem;
 }
-.options-page-global-fields .add_new_option_wrap button {
-	font-size: .65rem;
+.options-page-global-fields .add_new_option_wrap .add_new_btn_wrap {
+	padding-bottom: 1rem;
+}
+.options-page-global-fields .add_new_option_wrap .add_new_btn_wrap div {
+	display: inline-block;
+	font-size: .75rem;
+	font-weight: 500;
 	line-height: .5rem;
 	padding: 0;
 	cursor: pointer;
-	margin-bottom: 1rem;
+	padding: .5rem;
+	border-radius: .2rem;
+	background: #c7c7c7;
 }
 .options-page-global-fields .add_new_option_wrap .radio_wrap {
 	background: #fff;
 	padding: .2rem;
 	border: 1px solid #7e8993;
 	border-radius: .3rem;
+
 }
 .options-page-global-fields .add_new_option_wrap .new_option_specs {
 	display: none;
