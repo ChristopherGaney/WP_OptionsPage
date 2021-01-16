@@ -15,7 +15,7 @@
 
 add_action('admin_menu', 'add_gcf_interface');
 function add_gcf_interface() {
-   $my_page = add_options_page('Global Custom Fields', 'Global Custom Fields', 'manage_options', 'functions', 'options_page_saved_opts');
+   $my_page = add_options_page('Global Custom Fields', 'Global Custom Fields', 'manage_options', 'functions', 'editglobalcustomfields');
 
    add_action( 'admin_init', 'register_option_settings' );
 }
@@ -28,7 +28,7 @@ function register_option_settings() {
 	register_setting( 'option-settings-group', 'sidebar_image_1' );
 }
 
-/*function editglobalcustomfields() {
+function editglobalcustomfields() {
     ?>
     <div class="wrap options-page-global-fields">
       <h2>Global Custom Fields</h2>
@@ -76,16 +76,16 @@ function register_option_settings() {
       
     </div>
     <?php
-}*/
+}
 
- /* function options_page_enqueue() {
+  function options_page_enqueue() {
       wp_enqueue_media();
-      wp_register_script('options-page', plugin_dir_url( __FILE__ ) . 'js/options-page.js', array('jquery'), '1.0.0', true);
+      wp_register_script('options-page', plugin_dir_url( __FILE__ ) . 'dist/js/options-page.min.js', array('jquery'), '1.0.0', true);
       wp_enqueue_script('options-page');
-      wp_register_style('options-page', plugin_dir_url( __FILE__ ) . 'css/options-page.css', array(), '2.3.4', 'all');
+      wp_register_style('options-page', plugin_dir_url( __FILE__ ) . 'dist/css/options-page.min.css', array(), '2.0.0', 'all');
       wp_enqueue_style('options-page');
   }
-  add_action('admin_enqueue_scripts', 'options_page_enqueue');*/
+  add_action('admin_enqueue_scripts', 'options_page_enqueue');
 ?>
 
 <!-- Place to add new option -->
@@ -93,7 +93,7 @@ function register_option_settings() {
         
 
 <?php
-function options_page_saved_opts(){ ?>
+/*function options_page_saved_opts(){ ?>
 	<div class="options-page-global-fields">
       <h2>Global Custom Fields</h2>
 		  <div class="add_new_option_wrap">
@@ -140,7 +140,7 @@ function options_page_saved_opts(){ ?>
       wp_register_style('options-page', plugin_dir_url( __FILE__ ) . 'dist/css/options-page.min.css', array(), '2.0.0', 'all');
       wp_enqueue_style('options-page');
   }
-  add_action('admin_enqueue_scripts', 'options_page_enqueue');
+  add_action('admin_enqueue_scripts', 'options_page_enqueue');*/
 
   ?>      
         <!-- End Place to add new option -->
