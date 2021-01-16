@@ -20,13 +20,13 @@ function add_gcf_interface() {
    add_action( 'admin_init', 'register_option_settings' );
 }
 
-/*function register_option_settings() {
+function register_option_settings() {
 	//register our settings
 	register_setting( 'option-settings-group', 'header_text_1' );
 	register_setting( 'option-settings-group', 'header_image_1' );
 	register_setting( 'option-settings-group', 'sidebar_text_1' );
 	register_setting( 'option-settings-group', 'sidebar_image_1' );
-}*/
+}
 
 /*function editglobalcustomfields() {
     ?>
@@ -135,15 +135,12 @@ function options_page_saved_opts(){ ?>
 
  function options_page_enqueue() {
       wp_enqueue_media();
-      wp_register_script('options-page', plugin_dir_url( __FILE__ ) . 'js/options-page.js', array('jquery'), '1.0.0', true);
+      wp_register_script('options-page', plugin_dir_url( __FILE__ ) . 'dist/js/options-page.min.js', array('jquery'), '1.0.0', true);
       wp_enqueue_script('options-page');
-      wp_register_style('options-page', plugin_dir_url( __FILE__ ) . 'css/options-page.css', array(), '2.3.4', 'all');
+      wp_register_style('options-page', plugin_dir_url( __FILE__ ) . 'dist/css/options-page.min.css', array(), '2.0.0', 'all');
       wp_enqueue_style('options-page');
   }
   add_action('admin_enqueue_scripts', 'options_page_enqueue');
-
-
-
 
   ?>      
         <!-- End Place to add new option -->

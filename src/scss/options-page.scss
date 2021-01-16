@@ -1,0 +1,7 @@
+.options-page-global-fields {
+	.clearfix::after {
+	  content: "";
+	  clear: both;
+	  display: table;
+	}
+}
