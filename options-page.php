@@ -15,22 +15,20 @@
 // add options page
 
 
-
 add_action('admin_menu', 'add_gcf_interface');
 function add_gcf_interface() {
    $my_page = add_options_page('Global Custom Fields', 'Global Custom Fields', 'manage_options', 'functions', 'options_page_saved_opts');
 
-   global $new_whitelist_options;
-    $option_names = $new_whitelist_options[ 'option-settings-group' ];
-    print_r($option_names);
    add_action( 'admin_init', 'register_option_settings' );
 }
 
 function register_option_settings() {
-  
   //register our settings
-  register_setting( 'option-settings-group', 'dat_set_1' );
-  register_setting( 'option-settings-group', 'dat_set_2' );
+  $opts = get_option('field_array');
+  foreach ($opts as $name) {
+    register_setting( 'option-settings-group', $name);
+  }
+  //register_setting( 'option-settings-group', get_option('field_array')[1]);
   //register_setting( 'option-settings-group', 'sidebar_text_1' );
   //register_setting( 'option-settings-group', 'sidebar_image_1' );
 }
@@ -43,19 +41,14 @@ function register_option_settings() {
 
 
 function options_page_saved_opts(){ ?>
-
+<?php //$option_sets = [];
+//echo gettype($option_sets); ?>
 <?php 
+
 global $new_whitelist_options;
 $option_names = $new_whitelist_options[ 'option-settings-group' ];
-// array of option names
-
-
-//$option_count = 0;
-//get_option($option_name)
-//foreach ($option_names as $option_name) {
-    //print_r($option_name) .' ';
-    //$option_count++;
-//}
+echo $option_names[0];
+add_option( 'field_array', $option_names );
 ?>
 
   <div class="options-page-global-fields">
