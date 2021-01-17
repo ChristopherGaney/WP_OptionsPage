@@ -1,7 +1,7 @@
 jQuery(document).ready(function($){
   var mediaUploader;
   $('#add_new').click(function(e) {
-  	$('.new_option_specs').addClass('showing');
+  	$('#new_option_specs').addClass('showing');
   });
   $('#add_new_option').click(function(e) {
   	// herre we add new option w/ ajax

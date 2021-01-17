@@ -53,11 +53,8 @@ add_option( 'field_array', $option_names );
 
   <div class="options-page-global-fields">
       <h2>Global Custom Fields</h2>
-      <div class="add_new_option_wrap">
-        <div class="add_new_btn_wrap clearfix">
-        <div id="add_new">ADD NEW</div>
-      </div> 
-        <div class="new_option_specs">
+      <div class="page_option_wrap">
+        <div class="page_option_specs">
           <form id="add_option" method="post" action="options.php" name="option_addition">
             <?php wp_nonce_field('update-options'); 
 
@@ -86,8 +83,34 @@ add_option( 'field_array', $option_names );
                 </div>
            <?php endforeach; ?>
 
-            
-            
+
+            <div class="add_new_btn_wrap clearfix">
+              <div id="add_new">ADD NEW</div>
+            </div> 
+        
+            <div id="new_option_specs" class="field_wrap new_spec_field">
+              <div class="input_wrap">
+                <p><strong>Field Name</strong></p>
+                <input type="text" name="<?php echo $option_name; ?>[field_name]" size="45" form="add_option" value="<?php echo $options['field_name']; ?>" placeholder="Field Name" />
+              </div>
+              <div class="input_wrap">
+                <p><strong>Field Type</strong></p>
+                <div class="radio_wrap">
+                  <?php $radio = $options['field_type']; ?>
+                  <div class="input_wrap radio">
+                    <p>Type Text</p>
+                    <input type="radio" id="type_text" name="<?php echo $option_name; ?>[field_type]" form="add_option" value="text" <?php checked($radio == 'text'); ?>/>
+                  </div>
+                  <div class="input_wrap radio">
+                    <p>Type Image</p>
+                    <input type="radio" id="type_image" name="<?php echo $option_name; ?>[field_type]" form="add_option" value="image" <?php checked($radio == 'image'); ?>/>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+              
+              
 
             <div class="input_wrap submit_wrap">
                 <input type="submit" name="Submit" id="add_new_option" form="add_option" value="Add Option" />
@@ -96,14 +119,15 @@ add_option( 'field_array', $option_names );
             </div>
           </form>
         </div>
-      </div>
     </div>
+  </div>
 
 
 
   <?php }
 
  function options_page_enqueue() {
+    echo 'enqueuing now';
       wp_enqueue_media();
       wp_register_script('options-page', plugin_dir_url( __FILE__ ) . 'dist/js/options-page.min.js', array('jquery'), '1.0.0', true);
       wp_enqueue_script('options-page');

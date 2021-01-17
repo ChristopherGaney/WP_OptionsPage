@@ -4,4 +4,85 @@
 	  clear: both;
 	  display: table;
 	}
+	h2 {
+		font-weight: bold;
+	}
+	.page_option_wrap {
+		min-height: 3rem;
+		padding: .5rem;
+		background: #eaeaea;
+		margin-bottom: 2rem;
+		.add_new_btn_wrap {
+			padding-bottom: 1rem;
+			div {
+				display: inline-block;
+				font-size: .75rem;
+				font-weight: 500;
+				line-height: .5rem;
+				padding: 0;
+				cursor: pointer;
+				padding: .5rem;
+				border-radius: .2rem;
+				background: #c7c7c7;
+			}
+		}
+		.radio_wrap {
+			background: #fff;
+			padding: .2rem;
+			border: 1px solid #7e8993;
+			border-radius: .3rem;
+			.input_wrap {
+				display: inline-block;
+				padding: 0 .5rem;
+			}
+		}
+		.page_option_specs {
+			.field_wrap.new_spec_field {
+				display: none;
+				&.showing {
+					display: block;
+				}
+			}
+			.input_wrap {
+				display: inline-block;
+				vertical-align: top;
+				&.radio {
+					padding: 0;
+					text-align: center;
+					p {
+						display: inline-block;
+						padding-right: .8rem;
+					}
+				}
+				&:first-child {
+					margin-right: 1.5rem;
+				}
+			}
+			.submit_wrap {
+				display: block;
+			}
+		}
+	}
+	.input_wrap {
+		padding-bottom: 1rem;
+		p {
+			margin: 0;
+			padding-bottom: .2rem;
+		}
+		&.submit_wrap {
+			padding-top: 1rem;
+			input {
+				cursor: pointer;
+			}
+		}
+		.option_url {
+			margin-right: .5rem;
+		}
+	}
+	.img_wrap {
+		display: block;
+		img {
+			margin: 1.5rem 1rem 1rem;
+		}
+	}
 }
