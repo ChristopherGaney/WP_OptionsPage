@@ -32,7 +32,7 @@ function options_page_saved_opts(){
   global $new_whitelist_options;
   $option_names = $new_whitelist_options[ 'option-settings-group' ];
   add_option( 'field_array', $option_names );
-  echo $option_names[0];
+  print_r($option_names);
   echo 'break <br>';
   $ct = count($option_names);
   echo $ct;
@@ -48,29 +48,29 @@ function options_page_saved_opts(){
       <h2>Global Custom Fields</h2>
       <div class="page_option_wrap">
         <div class="page_option_specs">
-          <form method="post" action="options.php" name="option_addition">
+          <form method="post" action="options.php">
             <?php wp_nonce_field('update-options'); 
               $count = 1; ?>
               <div id="add_option" class="fields_holder">
              <?php foreach ($option_names as $option_name) : ?>
                 <?php $options = get_option($option_name); ?>
-
+                  <?php print_r($options); ?>
                   <div class="field_wrap">
                     <div class="input_wrap">
                       <p><strong>Field Name</strong></p>
-                      <input type="text" name="<?php echo $option_name; ?>[field_name]" size="45" form="add_option" value="<?php echo $options['field_name']; ?>" placeholder="Field Name" />
+                      <input type="text" name="<?php echo $option_name; ?>[field_name]" size="45" value="<?php if(!empty($options)) { echo $options['field_name']; } ?>" placeholder="Field Name" />
                     </div>
                     <div class="input_wrap">
                       <p><strong>Field Type</strong></p>
                       <div class="radio_wrap">
-                        <?php $radio = $options['field_type']; ?>
+                        <?php if(!empty($options)) { $radio = $options['field_type']; } ?>
                         <div class="input_wrap radio">
                           <p>Type Text</p>
-                          <input type="radio" id="type_text" name="<?php echo $option_name; ?>[field_type]" form="add_option" value="text" <?php checked($radio == 'text'); ?>/>
+                          <input type="radio" id="type_text" name="<?php echo $option_name; ?>[field_type]" value="text" <?php if(!empty($radio)) { checked($radio == 'text'); } ?>/>
                         </div>
                         <div class="input_wrap radio">
                           <p>Type Image</p>
-                          <input type="radio" id="type_image" name="<?php echo $option_name; ?>[field_type]" form="add_option" value="image" <?php checked($radio == 'image'); ?>/>
+                          <input type="radio" id="type_image" name="<?php echo $option_name; ?>[field_type]" value="image" <?php if(!empty($radio)) { checked($radio == 'image'); } ?>/>
                         </div>
                       </div>
                     </div>
@@ -82,21 +82,22 @@ function options_page_saved_opts(){
               <div id="add_new">ADD NEW</div>
             </div> 
         
+
             <div id="new_option_specs" class="field_wrap new_spec_field">
               <div class="input_wrap">
                 <p><strong>Field Name</strong></p>
-                <input type="text" name="dat_set_<?php echo $unique_num; ?>[field_name]" size="45" form="add_option" value="" placeholder="Field Name" />
+                <input type="text" name="dat_set_<?php echo $unique_num; ?>[field_name]" size="45" value="" placeholder="Field Name" />
               </div>
               <div class="input_wrap">
                 <p><strong>Field Type</strong></p>
                 <div class="radio_wrap">
                   <div class="input_wrap radio">
                     <p>Type Text</p>
-                    <input type="radio" id="type_text" name="dat_set_<?php echo $unique_num; ?>[field_type]" form="add_option" value="text"/>
+                    <input type="radio" id="type_text" name="dat_set_<?php echo $unique_num; ?>[field_type]" value="text"/>
                   </div>
                   <div class="input_wrap radio">
                     <p>Type Image</p>
-                    <input type="radio" id="type_image" name="dat_set_<?php echo $unique_num; ?>[field_type]" form="add_option" value="image"/>
+                    <input type="radio" id="type_image" name="dat_set_<?php echo $unique_num; ?>[field_type]" value="image"/>
                   </div>
                 </div>
               </div>
@@ -104,14 +105,15 @@ function options_page_saved_opts(){
                 <div id="create">CREATE</div>
               </div>
             </div>
+            
 
               
               
 
             <div class="input_wrap submit_wrap">
-                <input type="submit" name="Submit" id="add_new_option" form="add_option" value="Add Option" />
-                <input type="hidden" name="action" form="add_option" value="update" />
-                <input type="hidden" name="page_options" form="add_option" value="dat_set_1,dat_set_2" />
+                <input type="submit" name="Submit" id="add_new_option" value="Add Option" />
+                <input type="hidden" name="action" value="update" />
+                <input type="hidden" name="page_options" value="dat_set_1,dat_set_2" />
             </div>
           </form>
         </div>
