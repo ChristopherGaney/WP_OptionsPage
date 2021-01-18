@@ -12,7 +12,8 @@
 		padding: .5rem;
 		background: #eaeaea;
 		margin-bottom: 2rem;
-		.add_new_btn_wrap {
+		.add_new_btn_wrap,
+		.create_btn_wrap {
 			padding-bottom: 1rem;
 			div {
 				display: inline-block;
@@ -39,8 +40,11 @@
 		.page_option_specs {
 			.field_wrap.new_spec_field {
 				display: none;
+				border: 1px solid #c7c7c7;
+				border-radius: .3rem;
+				padding: 1rem;
 				&.showing {
-					display: block;
+					display: inline-block;
 				}
 			}
 			.input_wrap {
