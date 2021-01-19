@@ -1,3 +1,6 @@
+#wpfooter {
+	display: none;
+}
 .options-page-global-fields {
 	.clearfix::after {
 	  content: "";
@@ -6,6 +9,9 @@
 	}
 	h2 {
 		font-weight: bold;
+	}
+	input[type=text] {
+		min-width: 24rem;
 	}
 	.page_option_wrap {
 		min-height: 3rem;
@@ -32,22 +38,36 @@
 			padding: .2rem;
 			border: 1px solid #7e8993;
 			border-radius: .3rem;
+			display: inline-block;
+			min-width: 24rem;
 			.input_wrap {
 				display: inline-block;
 				padding: 0 .5rem;
-			}
-		}
-		.page_option_specs {
-			.field_wrap.new_spec_field {
-				display: none;
-				border: 1px solid #c7c7c7;
-				border-radius: .3rem;
-				padding: 1rem;
-				&.showing {
+				p,
+				input {
 					display: inline-block;
 				}
 			}
-			.input_wrap {
+		}
+		.field_wrap {
+			.config_wrap {
+				display: none;
+			}
+		}
+		//.page_option_specs {
+		.field_wrap.new_spec_field {
+			display: none;
+			border: 1px solid #c7c7c7;
+			border-radius: .3rem;
+			padding: 1rem;
+			&.showing {
+				display: inline-block;
+			}
+			.config_wrap {
+				display: block;
+			}
+		}
+			/*.input_wrap {
 				display: inline-block;
 				vertical-align: top;
 				&.radio {
@@ -64,8 +84,8 @@
 			}
 			.submit_wrap {
 				display: block;
-			}
-		}
+			}*/
+		//}
 	}
 	.input_wrap {
 		padding-bottom: 1rem;
@@ -75,6 +95,7 @@
 		}
 		&.submit_wrap {
 			padding-top: 1rem;
+			display: block;
 			input {
 				cursor: pointer;
 			}

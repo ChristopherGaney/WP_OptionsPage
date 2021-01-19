@@ -22,7 +22,7 @@ function get_optionpage_settings() {
   if(empty($fa)) {
     add_option( 'field_array', $option_names );
   }
-  print_r($option_names);
+  //print_r($option_names);
 
   return $option_names;
 }
@@ -48,19 +48,19 @@ function options_page_saved_opts(){
   <div class="options-page-global-fields">
       <h2>Global Custom Fields</h2>
       <div class="page_option_wrap">
-          <form method="post" action="options.php">
+          <form id="option_page" method="post" action="options.php">
             <?php wp_nonce_field('update-options'); 
               $count = 1; ?>
-              <div id="add_option" class="fields_holder">
+              <div class="fields_holder">
                <?php foreach ($option_names as $option_name) : ?>
                   <?php $options = get_option($option_name); ?>
-                    <?php print_r($options); ?>
+                    <?php //print_r($options); ?>
 
                     <div class="field_wrap">
                       <div class="config_wrap">
                         <div class="input_wrap">
                           <p><strong>Field Name</strong></p>
-                          <input type="text" name="<?php if(!empty($option_name)) { echo $option_name; } ?>[field_name]" size="45" value="<?php if(!empty($options['field_name'])) { echo $options['field_name']; } ?>" placeholder="Field Name" />
+                          <input type="text" name="<?php if(!empty($option_name)) { echo $option_name; } ?>[field_name]" value="<?php if(!empty($options['field_name'])) { echo $options['field_name']; } ?>" placeholder="Field Name">
                         </div>
                         <div class="input_wrap">
                           <p><strong>Field Type</strong></p>
@@ -68,11 +68,11 @@ function options_page_saved_opts(){
                             <?php if(!empty($options['field_type'])) { $radio = $options['field_type']; } ?>
                             <div class="input_wrap radio">
                               <p>Type Text</p>
-                              <input type="radio" id="type_text" name="<?php if(!empty($option_name)) { echo $option_name; } ?>[field_type]" value="text" <?php if(!empty($radio)) { checked($radio == 'text'); } ?>/>
+                              <input type="radio" id="type_text" name="<?php if(!empty($option_name)) { echo $option_name; } ?>[field_type]" value="text" <?php if(!empty($radio)) { checked($radio == 'text'); } ?>>
                             </div>
                             <div class="input_wrap radio">
                               <p>Type Image</p>
-                              <input type="radio" id="type_image" name="<?php if(!empty($option_name)) { echo $option_name; } ?>[field_type]" value="image" <?php if(!empty($radio)) { checked($radio == 'image'); } ?>/>
+                              <input type="radio" id="type_image" name="<?php if(!empty($option_name)) { echo $option_name; } ?>[field_type]" value="image" <?php if(!empty($radio)) { checked($radio == 'image'); } ?>>
                             </div>
                           </div>
                         </div>
@@ -83,7 +83,7 @@ function options_page_saved_opts(){
 
                             <div class="input_wrap">
                               <p><strong><?php if(!empty($options['field_name'])) { echo $options['field_name']; } ?></strong></p>
-                              <input type="text" name="<?php if(!empty($option_name)) { echo $option_name; } ?>[field_value]" size="45" value="<?php if(!empty($options['field_value'])) { echo $options['field_value']; } ?>" />
+                              <input type="text" name="<?php if(!empty($option_name)) { echo $option_name; } ?>[field_value]" value="<?php if(!empty($options['field_value'])) { echo $options['field_value']; } ?>">
                             </div>
 
                         <?php elseif($radio == 'image') : ?>
@@ -97,8 +97,8 @@ function options_page_saved_opts(){
                             <div class="input_wrap">
                               <p><strong><?php if(!empty($options['field_name'])) { echo $options['field_name']; } ?></strong></p>
                               
-                              <input type="text" name="<?php if(!empty($option_name)) { echo $option_name; } ?>[field_value]" class="option_url" size="45" value="<?php echo $value; ?>" />
-                              <input id="" type="button" class="button-primary upload_image_button" value="Insert Image" />
+                              <input type="text" name="<?php if(!empty($option_name)) { echo $option_name; } ?>[field_value]" class="option_url" value="<?php echo $value; ?>">
+                              <input id="" type="button" class="button-primary upload_image_button" value="Insert Image">
                               <div class="img_wrap">
                                 <img src="<?php echo $value; ?>" class="uploaded_img">
                               </div>
@@ -112,42 +112,44 @@ function options_page_saved_opts(){
                <?php $count++; endforeach; ?>
             </div>
 
-            <!-- <div class="add_new_btn_wrap clearfix">
+            <div class="add_new_btn_wrap clearfix">
               <div id="add_new">ADD NEW</div>
             </div> 
         
-            <?php //$uid = uniqid(); ?>
-            <div id="new_option_specs" class="field_wrap new_spec_field">
-              <div class="input_wrap">
-                <p><strong>Field Name</strong></p>
-                <input type="text" name="dat_set_<?php //echo $uid; ?>[field_name]" size="45" value="" placeholder="Field Name" />
-              </div>
-              <div class="input_wrap">
-                <p><strong>Field Type</strong></p>
-                <div class="radio_wrap">
-                  <div class="input_wrap radio">
-                    <p>Type Text</p>
-                    <input type="radio" id="type_text" name="dat_set_<?php //echo $uid; ?>[field_type]" value="text"/>
-                  </div>
-                  <div class="input_wrap radio">
-                    <p>Type Image</p>
-                    <input type="radio" id="type_image" name="dat_set_<?php //echo $uid; ?>[field_type]" value="image"/>
+            <?php $uid = uniqid(); ?>
+            <div id="new_option_specs" data-id="dat_set_<?php echo $uid; ?>" class="field_wrap new_spec_field">
+              <div class="config_wrap">
+                <div class="input_wrap">
+                  <p><strong>Field Name</strong></p>
+                  <input type="text" id="field-name-input" name="dat_set_<?php echo $uid; ?>[field_name]" value="" placeholder="Field Name" required disabled>
+                </div>
+                <div class="input_wrap">
+                  <p><strong>Field Type</strong></p>
+                  <div class="radio_wrap">
+                    <div class="input_wrap radio">
+                      <p>Type Text</p>
+                      <input type="radio" id="field-type-txt" name="dat_set_<?php echo $uid; ?>[field_type]" value="text" required disabled>
+                    </div>
+                    <div class="input_wrap radio">
+                      <p>Type Image</p>
+                      <input type="radio" id="field-type-img" name="dat_set_<?php echo $uid; ?>[field_type]" value="image" required disabled>
+                    </div>
                   </div>
                 </div>
+                <div class="create_btn_wrap clearfix">
+                  <div id="create">CREATE</div>
+                </div>
               </div>
-              <div class="create_btn_wrap clearfix">
-                <div id="create">CREATE</div>
-              </div>
-            </div> -->
+            </div>
             
 
               
               
 
             <div class="input_wrap submit_wrap">
-                <input type="submit" name="Submit" id="add_new_option" value="Add Option" />
-                <input type="hidden" name="action" value="update" />
-                <input type="hidden" name="page_options" value="dat_set_1,dat_set_2" />
+                <input type="submit" name="Submit" id="update_options" value="Update Options">
+                <input type="hidden" name="action" value="update">
+                <input type="hidden" id="hid-pg-opts" name="page_options" value="dat_set_1,dat_set_2">
             </div>
           </form>
         </div>
