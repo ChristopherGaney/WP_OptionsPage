@@ -15,131 +15,105 @@
 	}
 	.page_option_wrap {
 		min-height: 3rem;
-		padding: .5rem;
+		padding: 1rem 1rem .5rem;
 		background: #eaeaea;
 		margin-bottom: 2rem;
-		// .add_new_btn_wrap,
-		// .create_btn_wrap {
-		// 	padding-bottom: 1rem;
-		// 	div {
-		// 		display: inline-block;
-		// 		font-size: .75rem;
-		// 		font-weight: 500;
-		// 		line-height: .5rem;
-		// 		padding: 0;
-		// 		cursor: pointer;
-		// 		padding: .5rem;
-		// 		border-radius: .2rem;
-		// 		background: #c7c7c7;
-		// 	}
-		// }
-		// .radio_wrap {
-		// 	background: #fff;
-		// 	padding: .2rem;
-		// 	border: 1px solid #7e8993;
-		// 	border-radius: .3rem;
-		// 	display: inline-block;
-		// 	min-width: 24rem;
-		// 	.input_wrap {
-		// 		display: inline-block;
-		// 		padding: 0 .5rem;
-		// 		p,
-		// 		input {
-		// 			display: inline-block;
-		// 		}
-		// 	}
-		// }
-		.field_wrap {
-			.config_wrap {
-				display: none;
-				opacity: 0;
-				transition: opacity .3s ease-out;
-			}
-			&.enabld {
-				.config_wrap {
-					display: block;
-				}
-				.value_wrap {
-					position: relative;
-					min-height: 5rem;
-					.v_name,
-					.v_input {
-						visibility: hidden;
-					}
-					.field_choice {
-						position: absolute;
-					    top: 0;
-					    min-width: 20rem;
-						.radio_wrap .input_wrap {
-							display: inline-block;
-							&:first-child {
-								padding-right: 2rem;
-							}
-							p,input {
-								display: inline-block;
-							}
-							p {
-								padding-right: .7rem;
-							}
-						}
-					}
-				}
-			}
-			&.fadin {
-				.config_wrap {
-					opacity: 1;
-					transition: opacity .3s ease-in;
-				}
-			}
-		}
-		//.page_option_specs {
-		.field_wrap.new_spec_field {
-			display: none;
-			border: 1px solid #c7c7c7;
-			border-radius: .3rem;
-			padding: 1rem;
-			&.showing {
-				display: inline-block;
-			}
-			.config_wrap {
-				display: block;
-			}
-		}
-			/*.input_wrap {
-				display: inline-block;
-				vertical-align: top;
-				&.radio {
-					padding: 0;
-					text-align: center;
-					p {
-						display: inline-block;
-						padding-right: .8rem;
-					}
-				}
-				&:first-child {
-					margin-right: 1.5rem;
-				}
-			}
-			.submit_wrap {
-				display: block;
-			}*/
-		//}
 	}
+	.add_new_btn_wrap,
+	.create_btn_wrap {
+		padding-bottom: 1rem;
+		div {
+			display: inline-block;
+			font-size: .75rem;
+			font-weight: 500;
+			line-height: .5rem;
+			padding: 0;
+			cursor: pointer;
+			padding: .5rem;
+			border-radius: .2rem;
+			background: #c7c7c7;
+		}
+		div:hover {
+			background: darken(#c7c7c7, 6%);
+		}
+		div:focus {
+			background: lighten(#c7c7c7, 20%);
+		}
+	}
+	.create_btn_wrap {
+		max-width: 30rem;
+		position: relative;
+		div {
+			position: absolute;
+			right: 0rem;
+			top: 1rem;
+		}
+	}
+	.fields_holder {
+		.field_wrap {
+			display: none;
+		}
+	}
+	
+		
+	.new_spec_field {
+		display: none;
+		padding: 1rem;
+		&.showing {
+			display: inline-block;
+		}
+		.config_wrap {
+			display: none;
+			opacity: 0;
+			transition: opacity .3s ease-out;
+		}
+		&.enabld {
+			.config_wrap {
+				display: block;
+			}
+			
+		}
+		&.fadin {
+			.config_wrap {
+				opacity: 1;
+				transition: opacity .3s ease-in;
+			}
+		}
+	}
+		
+		
 	.input_wrap {
 		padding-bottom: 1rem;
+		
 		p {
 			margin: 0;
 			padding-bottom: .2rem;
 		}
 		&.submit_wrap {
-			padding-top: 1rem;
+			padding-top: 2.5rem;
 			display: block;
 			input {
 				cursor: pointer;
+				&.disabld {
+					opacity: 35%;
+					pointer-events: none;
+				}
 			}
 		}
 		.option_url {
 			margin-right: .5rem;
+		}
+	}
+	.radio_wrap .input_wrap {
+		display: inline-block;
+		&:first-child {
+			padding-right: 2rem;
+		}
+		p,input {
+			display: inline-block;
+		}
+		p {
+			padding-right: .7rem;
 		}
 	}
 	.img_wrap {

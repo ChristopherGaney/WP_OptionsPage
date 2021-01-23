@@ -103,35 +103,37 @@ function options_page_saved_opts(){
           </div>
 
           <!--****************************************************************-->
-           <div class="add_new_btn_wrap clearfix">
+          <div class="add_new_btn_wrap clearfix">
               <div id="add_new">ADD NEW</div>
-            </div> 
+          </div> 
         
-            <!--  cleaning this up -->
-            <div id="new_option_specs" data-id="dat_set_<?php echo $uid; ?>" class="field_wrap new_spec_field">
-              <div class="config_wrap">
-                <div class="input_wrap">
-                  <p><strong>Field Name</strong></p>
-                  <input type="text" id="field-name-input" name="dat_set_<?php echo $uid; ?>[field_name]" value="" placeholder="Field Name" required disabled>
-                </div>
-                <div class="input_wrap">
-                  <p><strong>Field Type</strong></p>
-                  <div class="radio_wrap">
-                    <div class="input_wrap radio">
-                      <p>Type Text</p>
-                      <input type="radio" id="field-type-txt" name="dat_set_<?php echo $uid; ?>[field_type]" value="text" required disabled>
+          <div id="new_option_specs" data-id="" class="field_wrap new_spec_field">
+              
+                <div class="config_wrap">
+                    <div class="input_wrap name_wrap">
+                      <p><strong>Field Name</strong></p>
+                      <input type="text" name="name_choice" value="">
                     </div>
-                    <div class="input_wrap radio">
-                      <p>Type Image</p>
-                      <input type="radio" id="field-type-img" name="dat_set_<?php echo $uid; ?>[field_type]" value="image" required disabled>
+                    <p><strong>Field Type</strong></p>
+                    <div class="radio_wrap">
+                      <div class="input_wrap radio">
+                        <p>Type Text</p>
+                        <input type="radio" id="field-type-txt" name="type_choice" value="text" checked>
+                      </div>
+                      <div class="input_wrap radio">
+                        <p>Type TextArea</p>
+                        <input type="radio" id="field-type-txtArea" name="type_choice" value="textarea" disabled>
+                      </div>
+                      <div class="input_wrap radio">
+                        <p>Type Image</p>
+                        <input type="radio" id="field-type-img" name="type_choice" value="image" disabled>
+                      </div>
                     </div>
-                  </div>
+                    <div class="create_btn_wrap">
+                      <div id="create">CREATE FIELD</div>
+                    </div>
                 </div>
-                <div class="create_btn_wrap clearfix">
-                  <div id="create">CREATE</div>
-                </div>
-              </div>
-            </div>
+          </div>
 
             <!--****************************************************************-->
 
