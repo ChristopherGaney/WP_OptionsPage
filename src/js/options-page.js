@@ -1,26 +1,47 @@
-var newHTMLfield = `<div class="field_wrap next_spec_field">
-              <div class="input_wrap">
-                <p><strong>Field Name</strong></p>
-                <input type="text" name="dat_set_<?php echo $count_dracula; ?>[field_name]" size="45" form="add_option" value="" placeholder="Field Name" />
-              </div>
-              <div class="input_wrap">
-                <p><strong>Field Type</strong></p>
-                <div class="radio_wrap">
-                  <div class="input_wrap radio">
-                    <p>Type Text</p>
-                    <input type="radio" id="type_text" name="dat_set_<?php echo $count; ?>[field_type]" form="add_option" value="text"/>
-                  </div>
-                  <div class="input_wrap radio">
-                    <p>Type Image</p>
-                    <input type="radio" id="type_image" name="dat_set_<?php echo $count; ?>[field_type]" form="add_option" value="image"/>
-                  </div>
-                </div>
-              </div>`;
+var fieldChoice = `<div class="field_choice">
+                      <p><strong>Field Type</strong></p>
+                      <div class="radio_wrap">
+                        <div class="input_wrap radio">
+                          <p>Type Text</p>
+                          <input type="radio" id="field-type-txt" name="type_choice" value="text">
+                        </div>
+                        <div class="input_wrap radio">
+                          <p>Type Image</p>
+                          <input type="radio" id="field-type-img" name="type_choice" value="image">
+                        </div>
+                      </div>
+                  </div>`;
 
 
 
   jQuery(document).ready(function($){
   var mediaUploader;
+
+  
+  var fieldPool = (function() {
+    var i,nod,len,fields;
+    var savedElements = [];
+
+    // grab the fields after page loads
+    fields = $('#option_page .fields_holder .field_wrap');
+
+    // detach each field and push it to savedElements
+    fields.each(function(i,el) {
+      nod = $(el).detach();
+      savedElements.push(nod);
+    });
+  
+
+    setTimeout(function() {
+      $('#option_page .fields_holder').append(savedElements[0]);
+      $('#option_page .fields_holder .field_wrap').addClass('enabld');
+      $('.value_wrap').append(fieldChoice);
+      setTimeout(function() {
+        $('#option_page .fields_holder .field_wrap').addClass('fadin');
+
+      },200);
+    },1000);
+  })();
   
   $('#add_new').click(function(e) {
     var val;

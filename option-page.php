@@ -14,11 +14,7 @@
 
 <?php
 
-function first_run() {
-  $test_option = 'Big Long String';
-  add_option($test_option);
-}
-first_run();
+
 
 function get_optionpage_settings() {
   global $new_whitelist_options; 
@@ -74,8 +70,7 @@ function register_option_settings() {
 function options_page_saved_opts(){ 
   $option_names = get_optionpage_settings();
   //print_r($option_names);
-  $test_option = get_option('Big Long String');
-  echo $test_option;
+  
 ?>
 
   <div class="options-page-global-fields">
@@ -90,18 +85,55 @@ function options_page_saved_opts(){
 
                   <div class="field_wrap">
                     <div class="config_wrap">
-                      <div class="input_wrap">
-                        <p><strong>Field Name</strong></p>
-                        <input type="text" name="<?php if(!empty($option_name)) { echo $option_name; } ?>[field_name]" value="<?php if(!empty($options['field_name'])) { echo $options['field_name']; } ?>" placeholder="Field Name">
+                      <div class="input_wrap data_wrap">
+                        <input type="hidden" name="<?php if(!empty($option_name)) { echo $option_name; } ?>[field_data]" value="<?php if(!empty($options['field_name'])) { echo $options['field_data']; } ?>">
                       </div>
-                      <div class="input_wrap">
-                            <p><strong><?php if(!empty($options['field_name'])) { echo $options['field_name']; } ?></strong></p>
-                            <input type="text" name="<?php if(!empty($option_name)) { echo $option_name; } ?>[field_value]" value="<?php if(!empty($options['field_value'])) { echo $options['field_value']; } ?>">
+                      <div class="input_wrap name_wrap">
+                        <p><strong>Field Name</strong></p>
+                        <input type="text" name="<?php if(!empty($option_name)) { echo $option_name; } ?>[field_name]" value="<?php if(!empty($options['field_name'])) { echo $options['field_name']; } ?>">
+                      </div>
+                      <div class="input_wrap value_wrap">
+                            <p class="v_name"><strong><?php if(!empty($options['field_name'])) { echo $options['field_name']; } ?></strong></p>
+                            <input class="v_input" type="text" name="<?php if(!empty($option_name)) { echo $option_name; } ?>[field_value]" value="<?php if(!empty($options['field_value'])) { echo $options['field_value']; } ?>">
                           </div>
                     </div>
                   </div>
+
              <?php $count++; endforeach; ?>
           </div>
+
+          <!--****************************************************************-->
+           <div class="add_new_btn_wrap clearfix">
+              <div id="add_new">ADD NEW</div>
+            </div> 
+        
+            <!--  cleaning this up -->
+            <div id="new_option_specs" data-id="dat_set_<?php echo $uid; ?>" class="field_wrap new_spec_field">
+              <div class="config_wrap">
+                <div class="input_wrap">
+                  <p><strong>Field Name</strong></p>
+                  <input type="text" id="field-name-input" name="dat_set_<?php echo $uid; ?>[field_name]" value="" placeholder="Field Name" required disabled>
+                </div>
+                <div class="input_wrap">
+                  <p><strong>Field Type</strong></p>
+                  <div class="radio_wrap">
+                    <div class="input_wrap radio">
+                      <p>Type Text</p>
+                      <input type="radio" id="field-type-txt" name="dat_set_<?php echo $uid; ?>[field_type]" value="text" required disabled>
+                    </div>
+                    <div class="input_wrap radio">
+                      <p>Type Image</p>
+                      <input type="radio" id="field-type-img" name="dat_set_<?php echo $uid; ?>[field_type]" value="image" required disabled>
+                    </div>
+                  </div>
+                </div>
+                <div class="create_btn_wrap clearfix">
+                  <div id="create">CREATE</div>
+                </div>
+              </div>
+            </div>
+
+            <!--****************************************************************-->
 
           <div class="input_wrap submit_wrap">
               <input type="submit" name="Submit" id="update_options" value="Update Options">
