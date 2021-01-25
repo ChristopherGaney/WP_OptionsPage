@@ -17,12 +17,15 @@
       
       // grab the fields after page loads
       fields = $('#option_page .fields_holder .field_wrap');
-
+      console.log('fields length');
+      console.log(fields.length);
+      console.dir(fields[0]);
       // detach each field and push it to savedElements
-      fields.each(function(i,el) {
-        nod = $(el).detach();
-        savedElements.push(nod);
-      });
+      // fields.each(function(i,el) {
+      //   nod = $(el).detach();
+      //   savedElements.push(nod);
+      // });
+      //$('.fields_holder').append(fields[0]);
     
     })();
     
@@ -48,7 +51,16 @@
     });
   
     $('#create').click(function(e) {
-       console.log('clicked create');
+      var name,type,el;
+      e.preventDefault();
+      name = $('input[name=name_choice]').val();
+      type = $('input[name=type_choice]').val();
+      // Here we would grab the correct field based on type
+
+      // add rest of data to element i.e data array
+      el = savedElements[0];
+      el.addClass('active');
+      $('.fields_holder').append(el);
     });
 
   $('.upload_image_button').click(function(e) {

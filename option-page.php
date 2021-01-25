@@ -17,38 +17,34 @@
 
 
 function get_optionpage_settings() {
-  global $new_whitelist_options; 
-  $option_names = $new_whitelist_options[ 'option-pool-group' ];// check for options
+  
+  $option_names = get_option('field_array');
 
-  if(!empty($option_names)) {
-      print_r($option_names);
+  //echo 'option names';
+  //print_r($option_names);
+
+  if(empty($option_names) && count($option_names)== 0) {
+        echo 'building $option names';
+
+        $option_names = [];
+      
+        for($i = 0;$i < 3;$i++) {
+       
+        $field_id = 'txt_pool_' . $i;//uniqid();
+      
+        $dats = array(
+            "name" => "",
+            "field_type" => "text",
+            "field_id" => $field_id
+          );
+        
+          $tmp = array("field_id"=> $field_id, "dats"=> $dats );
+          array_push($option_names, $tmp);
+      }
+    
+      update_option( 'field_array', $option_names );
   }
-
-
- //  $unids = [];
- //  for($i = 0;$i < 10;$i++) {
- //       array_push($unids, 'txt_pool_' . uniqid());
- //  }
- // // print_r(get_option('field_array'));
- //  update_option( 'field_array', $unids );
-
-
-  //print_r(get_option('field_array'));
- //  //if(!empty($option_names)) {
- //    // array_push($option_names, $latest);
- //  //}
-   //add_option( 'field_array', $latest );
-
- // // create one new option
- //  /*$unids = [];
- // // figure out how to merge the two arrays . .  the first is assoc
- //  for($i = 0;$i < 20;$i++) {
- //      array_push($unids, 'dat_node_' . uniqid());
- //  }
- //  // add old and new options to array for register
- //  add_option( 'field_array', $unids );*/
-
- //  // return to calling function
+      
    return $option_names;
 }
 
@@ -60,16 +56,25 @@ function add_gcf_interface() {
 }
 
 function register_option_settings() {
-    $option_names = get_option('field_array');
-    //print_r($options);
+
+    $option_names = get_optionpage_settings();//get_option('field_array');
+
     foreach($option_names as $option) {
-    register_setting( 'option-pool-group', $option);
-  }
+      register_setting( 'option-pool-group', $option['field_id']);
+    }
 }
 
 function options_page_saved_opts(){ 
+ // global $new_whitelist_options; 
+  //$list_names = $new_whitelist_options[ 'option-pool-group' ];// check for options
+
+  if(!empty($list_names)) {
+      //print_r($list_names);
+  }
+
+  $option_names = get_option('field_array');
   $option_names = get_optionpage_settings();
-  //print_r($option_names);
+  print_r($option_names);
   
 ?>
 
@@ -81,20 +86,21 @@ function options_page_saved_opts(){
             $count = 1; ?>
           <div class="fields_holder">
              <?php foreach ($option_names as $option_name) : ?>
-                <?php $options = get_option($option_name); ?>
+                <?php $options = get_option($option_name['field_id']);
+                //print_r($option_name); 
+                print_r($options);
+
+                ?>
 
                   <div class="field_wrap">
                     <div class="config_wrap">
-                      <div class="input_wrap data_wrap">
-                        <input type="hidden" name="<?php if(!empty($option_name)) { echo $option_name; } ?>[field_data]" value="<?php if(!empty($options['field_name'])) { echo $options['field_data']; } ?>">
-                      </div>
                       <div class="input_wrap name_wrap">
-                        <p><strong>Field Name</strong></p>
-                        <input type="text" name="<?php if(!empty($option_name)) { echo $option_name; } ?>[field_name]" value="<?php if(!empty($options['field_name'])) { echo $options['field_name']; } ?>">
+                        <p>Field Name</p>
+                        <input type="text" name="<?php if(!empty($option_name['field_id'])) { echo $option_name['field_id']; } ?>[field_name]" value="<?php if(!empty($options['field_name'])) { echo $options['field_name']; } ?>">
                       </div>
                       <div class="input_wrap value_wrap">
-                            <p class="v_name"><strong><?php if(!empty($options['field_name'])) { echo $options['field_name']; } ?></strong></p>
-                            <input class="v_input" type="text" name="<?php if(!empty($option_name)) { echo $option_name; } ?>[field_value]" value="<?php if(!empty($options['field_value'])) { echo $options['field_value']; } ?>">
+                            <p class="v_name"><?php if(!empty($options['field_name'])) { echo $options['field_name']; } ?></p>
+                            <input class="v_input" type="text" name="<?php if(!empty($option_name['field_id'])) { echo $option_name['field_id']; } ?>[field_value]" value="<?php if(!empty($options['field_value'])) { echo $options['field_value']; } ?>">
                           </div>
                     </div>
                   </div>
@@ -118,15 +124,15 @@ function options_page_saved_opts(){
                     <div class="radio_wrap">
                       <div class="input_wrap radio">
                         <p>Type Text</p>
-                        <input type="radio" id="field-type-txt" name="type_choice" value="text" checked>
+                        <input type="radio" id="field_type_txt" name="type_choice" value="text" checked>
                       </div>
                       <div class="input_wrap radio">
                         <p>Type TextArea</p>
-                        <input type="radio" id="field-type-txtArea" name="type_choice" value="textarea" disabled>
+                        <input type="radio" id="field_type-txt_area" name="type_choice" value="textarea" disabled>
                       </div>
                       <div class="input_wrap radio">
                         <p>Type Image</p>
-                        <input type="radio" id="field-type-img" name="type_choice" value="image" disabled>
+                        <input type="radio" id="field_type_img" name="type_choice" value="image" disabled>
                       </div>
                     </div>
                     <div class="create_btn_wrap">
@@ -140,7 +146,20 @@ function options_page_saved_opts(){
           <div class="input_wrap submit_wrap">
               <input type="submit" name="Submit" id="update_options" value="Update Options">
               <input type="hidden" name="action" value="update">
-              <input type="hidden" id="hid-pg-opts" name="page_options" value="<?php implode(',',$option_names); ?>">
+              <input type="hidden" id="hid-pg-opts" name="page_options" value="<?php 
+                $option_names = get_option('field_array');
+                $len = count($option_names);
+            
+                for($i = 0;$i < $len;$i++) {
+                  if($i == ($len - 1)) {
+                    echo $option_names[$i]['field_id'];
+                  }
+                  else {
+                    echo $option_names[$i]['field_id'] . ',';
+                  }
+                }
+              //implode(',',$option_names);
+                ?>">
           </div>
         </form>
   

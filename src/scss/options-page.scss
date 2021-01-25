@@ -51,7 +51,10 @@
 	}
 	.fields_holder {
 		.field_wrap {
-			display: none;
+			display: inline-block;//none;
+		}
+		.field_wrap.active {
+			display: inline-block;
 		}
 	}
 	
@@ -88,6 +91,9 @@
 		p {
 			margin: 0;
 			padding-bottom: .2rem;
+		}
+		&.data_wrap {
+			display: none;
 		}
 		&.submit_wrap {
 			padding-top: 2.5rem;
