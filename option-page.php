@@ -14,7 +14,7 @@
 
 <?php
 
-
+//$new_allowed_options
 
 function get_optionpage_settings() {
   
@@ -23,28 +23,20 @@ function get_optionpage_settings() {
   //echo 'option names';
   //print_r($option_names);
 
-  if(empty($option_names) && count($option_names)== 0) {
+  if(empty($option_names)) {
         echo 'building $option names';
 
         $option_names = [];
       
         for($i = 0;$i < 3;$i++) {
-       
-        $field_id = 'txt_pool_' . $i;//uniqid();
-      
-        $dats = array(
-            "name" => "",
-            "field_type" => "text",
-            "field_id" => $field_id
-          );
-        
-          $tmp = array("field_id"=> $field_id, "dats"=> $dats );
+          $field_id = 'txt_input_' . $i;//uniqid();
+          $tmp = array("field_id"=> $field_id, "field_type" => "text" );
           array_push($option_names, $tmp);
       }
     
       update_option( 'field_array', $option_names );
   }
-      
+  
    return $option_names;
 }
 
@@ -65,16 +57,15 @@ function register_option_settings() {
 }
 
 function options_page_saved_opts(){ 
- // global $new_whitelist_options; 
-  //$list_names = $new_whitelist_options[ 'option-pool-group' ];// check for options
-
-  if(!empty($list_names)) {
-      //print_r($list_names);
-  }
-
-  $option_names = get_option('field_array');
+//  global $new_whitelist_options; 
+//   $reggie_fields = $new_whitelist_options[ 'option-pool-group' ];// check for options
+// echo 'printing';
+//   if(!empty($reggie_fields)) {
+//       print_r($reggie_fields);
+//   }
+//   echo 'fetcher<br><br>';
   $option_names = get_optionpage_settings();
-  print_r($option_names);
+  //print_r($option_names);
   
 ?>
 
@@ -87,13 +78,17 @@ function options_page_saved_opts(){
           <div class="fields_holder">
              <?php foreach ($option_names as $option_name) : ?>
                 <?php $options = get_option($option_name['field_id']);
-                //print_r($option_name); 
-                print_r($options);
+               // print_r($option_name); 
+                //print_r($options);
+            $jsn = htmlspecialchars(json_encode($option_name)); 
 
-                ?>
+              ?>
 
-                  <div class="field_wrap">
+                <div class="field_wrap">
                     <div class="config_wrap">
+                      <div class="input_wrap data_wrap">
+                        <input type="text" name="<?php if(!empty($option_name['field_id'])) { echo $option_name['field_id']; } ?>[field_data]" value="<?php if(!empty($options['field_data'])) { echo $options['field_data'];}else { echo $jsn; } ?>">
+                      </div>
                       <div class="input_wrap name_wrap">
                         <p>Field Name</p>
                         <input type="text" name="<?php if(!empty($option_name['field_id'])) { echo $option_name['field_id']; } ?>[field_name]" value="<?php if(!empty($options['field_name'])) { echo $options['field_name']; } ?>">
@@ -104,6 +99,7 @@ function options_page_saved_opts(){
                           </div>
                     </div>
                   </div>
+                 
 
              <?php $count++; endforeach; ?>
           </div>
@@ -147,6 +143,7 @@ function options_page_saved_opts(){
               <input type="submit" name="Submit" id="update_options" value="Update Options">
               <input type="hidden" name="action" value="update">
               <input type="hidden" id="hid-pg-opts" name="page_options" value="<?php 
+                // these maybe don't need to be here until fields are saved
                 $option_names = get_option('field_array');
                 $len = count($option_names);
             
@@ -171,7 +168,7 @@ function options_page_saved_opts(){
   <?php }
 
  function options_page_enqueue() {
-    echo 'enqueuing now';
+  
       wp_enqueue_media();
       wp_register_script('options-page', plugin_dir_url( __FILE__ ) . 'dist/js/options-page.min.js', array('jquery'), '1.0.0', true);
       wp_enqueue_script('options-page');

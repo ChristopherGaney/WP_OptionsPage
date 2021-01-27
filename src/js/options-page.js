@@ -11,22 +11,21 @@
   jQuery(document).ready(function($){
     var mediaUploader;
     var savedElements = [];
-    
+
     var fieldPool = (function() {
       var i,nod,len,fields;
       
       // grab the fields after page loads
       fields = $('#option_page .fields_holder .field_wrap');
-      console.log('fields length');
-      console.log(fields.length);
-      console.dir(fields[0]);
-      // detach each field and push it to savedElements
-      // fields.each(function(i,el) {
-      //   nod = $(el).detach();
-      //   savedElements.push(nod);
-      // });
-      //$('.fields_holder').append(fields[0]);
-    
+      
+      //detach each field and push it to savedElements
+      fields.each(function(i,el) {
+        nod = $(el).detach();
+        savedElements.push(nod);
+      });
+      $('.fields_holder').append(fields[0]);
+      $('.fields_holder').append(fields[1]);
+
     })();
     
     $('#add_new').click(function(e) {
